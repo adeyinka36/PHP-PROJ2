@@ -39,6 +39,7 @@ function generateRandQues(){
 // Loop for required number of questions
 while(count($questions)<10){
     $answers=[];
+
    if(count($questions)!=0){
        foreach($questions as $ques){
            array_push($answers,$ques["correctAnswer"]);
