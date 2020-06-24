@@ -4,24 +4,26 @@ $questions=[];
 
 
 function generateRandQues(){
-    $num1 = rand(100,999);
-    $num2= rand(100,999);
+    $num1 = rand(10,99);
+    $num2= rand(10,99);
     while($num1==$num2){
-    $num2=rand(100,999);
+    $num2=rand(10,99);
     }
     $answer=$num1+$num2;
     
     // get random incorrect numbers 
-
-    $wrong1= rand(200,1100);
-    if($wrong1==$num1||$wrong1==$num2||$wrong1==$answer){
-        $wrong1= rand(200,1100);
+    $num1high=$answer+10;
+    $num1Low=$answer-10;
+    $wrong1= rand(20,198);
+    while($wrong1==$num1||$wrong1==$num2||$wrong1==$answer||$wrong1<$num1Low||$wrong1>$num1high){
+        $wrong1= rand(20,198);
     }
 
-    
-    $wrong2= rand(200,1100);
-    if($wrong2==$num1||$wrong2==$num2||$wrong2==$answer||$wrong2==$wrong1){
-        $wrong2= rand(200,1100);
+    $num2high=$answer+10;
+    $num2Low=$answer-10;
+    $wrong2= rand(20,198);
+    while($wrong2==$num1||$wrong2==$num2||$wrong2==$answer||$wrong2==$wrong1||$wrong2<$num2Low||$wrong2>$num2high){
+        $wrong2= rand(20,198);
     }
    
 
