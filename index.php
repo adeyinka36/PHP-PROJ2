@@ -5,7 +5,7 @@
     <title>Math Quiz: Addition</title>
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=<?php echo time() ?>">
 </head>
 <body>
     <?php include 'inc/generate_questions.php'?>
@@ -110,10 +110,18 @@
             <p class="breadcrumbs">Question <?php echo $questionNumber+1 ?> of <?php echo count($questions) ?></p>
             <p class="quiz">What is <?php echo $questions[$questionNumber]["leftAdder"] ?>+ <?php echo $questions[$questionNumber]["rightAdder"] ?>?</p>
             <form action="index.php" method="post">
+                 <?php
+                  $options=[
+                      $questions[$questionNumber]["firstIncorrectAnswer"],
+                      $questions[$questionNumber]["secondIncorrectAnswer"],
+                      $questions[$questionNumber]["correctAnswer"]
+                    ];
+                  shuffle($options);
+                  ?>
                 <input type="hidden" name="id" value="0" />
-                <input type="submit" class="btn" name="answer" value=<?php echo $questions[$questionNumber]["firstIncorrectAnswer"] ?> />
-                <input type="submit" class="btn" name="answer" value= <?php echo $questions[$questionNumber]["secondIncorrectAnswer"] ?> />
-                <input type="submit" class="btn" name="answer" value=<?php echo $questions[$questionNumber]["correctAnswer"] ?> />
+                <input type="submit" class="btn" name="answer" value= <?php echo $options[0] ?> />
+                <input type="submit" class="btn" name="answer" value= <?php echo $options[1] ?> />
+                <input type="submit" class="btn" name="answer" value=<?php echo $options[2] ?> />
             </form>
         </div>
     </div>
